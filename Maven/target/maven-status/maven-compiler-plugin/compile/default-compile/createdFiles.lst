@@ -1,2 +1,6 @@
+org\main\Controller.class
 module-info.class
+org\main\backend\StatusEnum.class
+org\main\backend\Task.class
 org\main\App.class
+org\main\backend\PriorityEnum.class

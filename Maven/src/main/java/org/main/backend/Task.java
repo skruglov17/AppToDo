@@ -1,23 +1,32 @@
 package org.main.backend;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.OffsetTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Task {
 
+    private int id;
     private String topic;
     private PriorityEnum priority;
     private String responsiblePerson;
     private String description;
     private StatusEnum status;
-    private LocalDateTime createDate;
-    private LocalDateTime wishDate;
-    private LocalDateTime completeDate;
-    private List<Task> childTasks;
+    private OffsetDateTime createDate;
+    private OffsetDateTime wishDate;
+    private OffsetDateTime completeDate;
+    private int parentTask;
 
-    public Task(String topic) {
-        this.topic = topic;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTopic() {
@@ -32,8 +41,13 @@ public class Task {
         return priority;
     }
 
-    public void setPriority(PriorityEnum priority) {
-        this.priority = priority;
+    public void setPriority(int priority) {
+        switch(priority) {
+            case 1: this.priority = PriorityEnum.ONE;
+            case 2: this.priority = PriorityEnum.TWO;
+            case 3: this.priority = PriorityEnum.THREE;
+            case 4: this.priority = PriorityEnum.FOUR;
+        };
     }
 
     public String getResponsiblePerson() {
@@ -56,41 +70,57 @@ public class Task {
         return status;
     }
 
-    public void setStatus(StatusEnum status) {
-        this.status = status;
+    public void setStatus(int status) {
+        switch(status) {
+            case 0: this.status = StatusEnum.PROGRESS;
+            case 1: this.status = StatusEnum.COMPLETE;
+        };
     }
 
-    public LocalDateTime getCreateDate() {
+    public OffsetDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
+    public void setCreateDate(OffsetDateTime createDate) {
         this.createDate = createDate;
     }
 
-    public LocalDateTime getWishDate() {
+    public OffsetDateTime getWishDate() {
         return wishDate;
     }
 
-    public void setWishDate(LocalDateTime wishDate) {
+    public void setWishDate(OffsetDateTime wishDate) {
         this.wishDate = wishDate;
     }
 
-    public LocalDateTime getCompleteDate() {
+    public OffsetDateTime getCompleteDate() {
         return completeDate;
     }
 
-    public void setCompleteDate(LocalDateTime completeDate) {
+    public void setCompleteDate(OffsetDateTime completeDate) {
         this.completeDate = completeDate;
     }
 
-    public List<Task> getChildTasks() {
-        return childTasks;
+    public int getParentTask() {
+        return parentTask;
     }
 
-    public void setChildTasks(List<Task> childTasks) {
-        this.childTasks = childTasks;
+    public void setParentTask(int parentTask) {
+        this.parentTask = parentTask;
     }
 
-
+    public static Task mapRowTask(ResultSet resultSet) throws SQLException {
+        Task task = new Task();
+        task.setId(resultSet.getInt("id"));
+        task.setTopic(resultSet.getString("topic"));
+        task.setPriority(resultSet.getInt("priority"));
+        task.setResponsiblePerson(resultSet.getString("resposible"));
+        task.setCreateDate(resultSet.getObject("create_date", OffsetDateTime.class));
+        task.setWishDate(resultSet.getObject("wish_date", OffsetDateTime.class));
+        task.setCompleteDate(resultSet.getObject("complete_date", OffsetDateTime.class));
+        task.setStatus(resultSet.getInt("complete_status"));
+        task.setDescription(resultSet.getString("description"));
+        task.setParentTask(resultSet.getInt("parental_task"));
+        return task;
+    }
 }

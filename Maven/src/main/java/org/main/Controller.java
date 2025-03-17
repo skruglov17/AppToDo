@@ -7,9 +7,9 @@ import javafx.scene.control.TreeView;
 public class Controller {
 
     @FXML
-    private TreeView treeView;
+    private TreeView taskTree;
 
     private void click(ActionEvent event) {
-
+        
     }
 }

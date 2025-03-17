@@ -20,6 +20,11 @@
             <artifactId>javafx-fxml</artifactId>
             <version>25-ea+2</version>
         </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.5</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -41,7 +46,7 @@
                         <!-- Usage: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>org.main.App</mainClass>
+                            <mainClass>org.main.Main</mainClass>
                         </configuration>
                     </execution>
                 </executions>
@@ -52,6 +57,7 @@
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.fxml</include>
+                    <include>**/*.properties</include>
                 </includes>
             </resource>
         </resources>
