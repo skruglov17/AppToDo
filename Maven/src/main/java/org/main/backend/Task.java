@@ -1,5 +1,7 @@
 package org.main.backend;
 
+import javafx.scene.control.TreeItem;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -20,6 +22,7 @@ public class Task {
     private OffsetDateTime wishDate;
     private OffsetDateTime completeDate;
     private int parentTask;
+    private TreeItem<String> treeItem;
 
     public int getId() {
         return id;
@@ -107,6 +110,14 @@ public class Task {
 
     public void setParentTask(int parentTask) {
         this.parentTask = parentTask;
+    }
+
+    public TreeItem<String> getTreeItem() {
+        return treeItem;
+    }
+
+    public void setTreeItem(TreeItem<String> treeItem) {
+        this.treeItem = treeItem;
     }
 
     public static Task mapRowTask(ResultSet resultSet) throws SQLException {

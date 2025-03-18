@@ -28,6 +28,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         //Загрузим сцену с задачами из XML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/org/main/resources/schema.fxml"));
+        Controller controller = loader.getController();
         Parent root = loader.load();
         Scene sceneTasks = new Scene(root);
         stage.setScene(sceneTasks);

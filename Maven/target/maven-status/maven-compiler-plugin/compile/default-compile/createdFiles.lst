@@ -1,8 +1,8 @@
 org\main\Controller.class
 module-info.class
-org\main\backend\ApplicationProperties.class
+org\main\backend\connection\ApplicationProperties.class
 org\main\backend\StatusEnum.class
 org\main\Main.class
 org\main\backend\Task.class
-org\main\backend\DBConnector.class
+org\main\backend\connection\DBConnector.class
 org\main\backend\PriorityEnum.class
