@@ -21,10 +21,9 @@ public class DBConnector {
         ApplicationProperties properties = ApplicationProperties.getInstance();
         try {
             if(connection == null || connection.isClosed()) {
-//                connection = DriverManager.getConnection(properties.getValue("database_url"),
-//                                                        properties.getValue("database_user"),
-//                                                        properties.getValue("database_password"));
-                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres", "postgres");
+                connection = DriverManager.getConnection(properties.getValue("database_url"),
+                                                        properties.getValue("database_user"),
+                                                        properties.getValue("database_password"));
             }
         } catch(SQLException e) {
                 System.out.println("Ошибка соединения с БД: " + e);

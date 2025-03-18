@@ -28,7 +28,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         //Загрузим сцену с задачами из XML
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/main/resources/schema.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/org/main/resources/schema.fxml"));
         Parent root = loader.load();
         fillData();
         Scene sceneTasks = new Scene(root);

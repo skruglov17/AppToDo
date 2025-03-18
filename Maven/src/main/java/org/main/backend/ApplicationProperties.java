@@ -3,6 +3,7 @@ package org.main.backend;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
 
 /**
@@ -19,7 +20,8 @@ public class ApplicationProperties {
      */
     private ApplicationProperties(){
         properties = new Properties();
-        File propertiesFile =new File("connection.properties");
+        URL urlProperties = getClass().getResource("/properties/org/main/properties/connection.properties");
+        File propertiesFile =new File(urlProperties.getPath());
         try {
             if(!propertiesFile.exists()) propertiesFile.createNewFile();
             properties.load(new FileInputStream(propertiesFile));
