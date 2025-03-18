@@ -60,4 +60,5 @@ public class Controller implements Initializable {
         }
         tasksTree.setRoot(mainTreeNode);
     }
+
 }
