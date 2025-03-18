@@ -1,6 +1,5 @@
-package org.main.backend;
+package org.main.backend.connection;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

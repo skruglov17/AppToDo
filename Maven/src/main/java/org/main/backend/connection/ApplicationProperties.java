@@ -1,4 +1,4 @@
-package org.main.backend;
+package org.main.backend.connection;
 
 import java.io.File;
 import java.io.FileInputStream;
