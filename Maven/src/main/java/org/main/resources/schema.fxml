@@ -28,21 +28,21 @@
       </VBox>
       <SplitPane dividerPositions="0.29797979797979796" prefHeight="507.0" prefWidth="854.0">
         <items>
-          <AnchorPane fx:id="tasksPane" minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="227.0">
+          <AnchorPane fx:id="tasksPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="227.0">
                <children>
                   <ChoiceBox id="choiceBoxFilterTasks" layoutX="8.0" layoutY="8.0" prefHeight="25.0" prefWidth="70.0" />
                   <TextField layoutX="88.0" layoutY="8.0" prefHeight="25.0" prefWidth="156.0" />
-                  <TreeView id="tasksTree" fx:id="tasksTree" layoutX="8.0" layoutY="42.0" onKeyPressed="#fillTasksTree" prefHeight="454.0" prefWidth="236.0" />
+                  <TreeView id="tasksTree" fx:id="tasksTree" layoutX="8.0" layoutY="42.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="406.0" prefWidth="235.0" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
                   <VBox layoutX="10.0" layoutY="10.0" prefHeight="494.0" prefWidth="581.0">
                      <children>
                         <HBox prefHeight="40.0" prefWidth="582.0">
                            <children>
                               <Label prefHeight="26.0" prefWidth="90.0" text="Тема" />
-                              <TextField id="topicNameAdder" disable="true" prefHeight="26.0" prefWidth="490.0" />
+                              <TextField id="topicNameAdder" fx:id="topic" prefHeight="26.0" prefWidth="490.0" />
                            </children>
                         </HBox>
                         <HBox prefHeight="40.0" prefWidth="582.0">

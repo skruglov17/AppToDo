@@ -1,10 +1,11 @@
 package org.main;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import org.main.backend.Task;
 import org.main.backend.connection.DBConnector;
@@ -23,17 +24,41 @@ public class Controller implements Initializable {
 
     @FXML
     private TreeView tasksTree;
+    @FXML
+    private TextField topic;
 
+    /**
+     * Метод предназначен для заполнения данными при запуске приложения
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillTasksTree();
+        addListener();
     }
 
+    /**
+     * Метод предназначен для заполнения данных по выбранной задаче из списка
+     */
+    private void addListener() {
+        SelectionModel<TreeItem<Task>> selectionModel = tasksTree.getSelectionModel();
+        selectionModel.selectedItemProperty().addListener(new ChangeListener<TreeItem<Task>>(){
+            public void changed(ObservableValue<? extends TreeItem<Task>> changed,
+                                TreeItem<Task> unSelectedValue, TreeItem<Task> selectedValue){
+                topic.setText(selectedValue.getValue().getTopic());
+            }
+        });
+    }
+
+    /**
+     * Метод предназначен для получения всего списка задач, сохранения их из БД в объекты и формирования списка дерева
+     */
     @FXML
     private void fillTasksTree() {
         Connection connection = DBConnector.getConnection();
         LinkedList<Task> tasks = new LinkedList<>();
-        TreeItem<String> mainTreeNode = new TreeItem<String>("Задачи");
+        TreeItem<Task> mainTreeNode = new TreeItem<Task>(new Task("Задачи"));
         try (
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("SELECT * FROM tasks")
@@ -42,7 +67,7 @@ public class Controller implements Initializable {
                 tasks.add(mapRowTask(resultSet));
             }
             for (Task task : tasks) {
-                task.setTreeItem(new TreeItem<String>(task.getTopic()));
+                task.setTreeItem(new TreeItem<Task>(task));
             }
             for (Task task : tasks) {
                 if(task.getParentTask() == 0) {

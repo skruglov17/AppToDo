@@ -22,7 +22,13 @@ public class Task {
     private OffsetDateTime wishDate;
     private OffsetDateTime completeDate;
     private int parentTask;
-    private TreeItem<String> treeItem;
+    private TreeItem<Task> treeItem;
+
+    public Task() {}
+
+    public Task(String topic) {
+        this.topic = topic;
+    }
 
     public int getId() {
         return id;
@@ -112,11 +118,11 @@ public class Task {
         this.parentTask = parentTask;
     }
 
-    public TreeItem<String> getTreeItem() {
+    public TreeItem<Task> getTreeItem() {
         return treeItem;
     }
 
-    public void setTreeItem(TreeItem<String> treeItem) {
+    public void setTreeItem(TreeItem<Task> treeItem) {
         this.treeItem = treeItem;
     }
 
@@ -133,5 +139,10 @@ public class Task {
         task.setDescription(resultSet.getString("description"));
         task.setParentTask(resultSet.getInt("parental_task"));
         return task;
+    }
+
+    @Override
+    public String toString() {
+        return this.getTopic();
     }
 }
