@@ -48,8 +48,8 @@
                         <HBox prefHeight="40.0" prefWidth="582.0">
                            <children>
                               <Label prefHeight="24.0" prefWidth="90.0" text="Подзадача" />
-                              <TextField id="topicNameAdder" prefHeight="26.0" prefWidth="400.0" />
-                              <Button id="topicNameAddButton" mnemonicParsing="false" prefHeight="23.0" prefWidth="90.0" text="Добавить" />
+                              <TextField id="topicNameAdder" fx:id="topicSubtask" prefHeight="26.0" prefWidth="400.0" />
+                              <Button id="topicNameAddButton" fx:id="buttonAddSubtask" mnemonicParsing="false" onAction="#addSubtask" prefHeight="23.0" prefWidth="90.0" text="Добавить" />
                            </children>
                         </HBox>
                         <HBox prefHeight="93.0" prefWidth="605.0">
@@ -65,14 +65,14 @@
                                  <children>
                                     <HBox prefHeight="5.0" prefWidth="100.0">
                                        <children>
-                                            <ToggleButton id="priorityOne" prefHeight="25.0" prefWidth="25.0" />
-                                            <ToggleButton id="priorityTwo" prefHeight="25.0" prefWidth="25.0" selected="true" />
-                                            <ToggleButton id="priorityThree" prefHeight="25.0" prefWidth="25.0" />
-                                          <ToggleButton id="priorityFour" prefHeight="25.0" prefWidth="25.0" />
+                                            <ToggleButton id="priorityOne" fx:id="priorityOne" prefHeight="25.0" prefWidth="25.0" />
+                                            <ToggleButton id="priorityTwo" fx:id="priorityTwo" prefHeight="25.0" prefWidth="25.0" />
+                                            <ToggleButton id="priorityThree" fx:id="priorityThree" prefHeight="25.0" prefWidth="25.0" />
+                                          <ToggleButton id="priorityFour" fx:id="priorityFour" prefHeight="25.0" prefWidth="25.0" />
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="5.0" prefWidth="100.0" />
-                                    <TextField prefHeight="25.0" prefWidth="100.0" />
+                                    <TextField fx:id="responsible" prefHeight="25.0" prefWidth="100.0" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="90.0" prefWidth="70.0" />
@@ -92,7 +92,7 @@
                                        <children>
                                           <HBox prefHeight="30.0" prefWidth="27.0" />
                                           <Label prefHeight="26.0" prefWidth="73.0" text="Выполнена" />
-                                          <CheckBox alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="27.0" prefWidth="20.0" textAlignment="RIGHT" />
+                                          <CheckBox fx:id="checkComplete" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="27.0" prefWidth="20.0" textAlignment="RIGHT" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -102,30 +102,30 @@
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <TextField prefHeight="25.0" prefWidth="156.0" />
+                                          <TextField fx:id="dateRegistration" prefHeight="25.0" prefWidth="156.0" />
                                           <HBox prefHeight="29.0" prefWidth="60.0" />
-                                          <TextField prefHeight="25.0" prefWidth="156.0" />
+                                          <TextField fx:id="timeRegistration" prefHeight="25.0" prefWidth="156.0" />
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <TextField prefHeight="25.0" prefWidth="156.0" />
+                                          <TextField fx:id="dateWish" prefHeight="25.0" prefWidth="156.0" />
                                           <HBox prefHeight="29.0" prefWidth="60.0" />
-                                          <TextField prefHeight="25.0" prefWidth="156.0" />
+                                          <TextField fx:id="timeWish" prefHeight="25.0" prefWidth="156.0" />
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <TextField prefHeight="25.0" prefWidth="156.0" />
+                                          <TextField fx:id="dateComplete" prefHeight="25.0" prefWidth="156.0" />
                                           <HBox prefHeight="29.0" prefWidth="60.0" />
-                                          <TextField prefHeight="25.0" prefWidth="156.0" />
+                                          <TextField fx:id="timeComplete" prefHeight="25.0" prefWidth="156.0" />
                                        </children>
                                     </HBox>
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
-                        <TextArea id="descriptionTask" prefHeight="275.0" prefWidth="582.0" wrapText="true" />
+                        <TextArea id="descriptionTask" fx:id="description" prefHeight="275.0" prefWidth="582.0" wrapText="true" />
                         <HBox prefHeight="10.0" prefWidth="582.0" />
                         <HBox prefHeight="42.0" prefWidth="582.0">
                            <children>

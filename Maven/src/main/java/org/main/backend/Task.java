@@ -23,6 +23,7 @@ public class Task {
     private OffsetDateTime completeDate;
     private int parentTask;
     private TreeItem<Task> treeItem;
+    public static TreeItem<Task> mainTreeNode;
 
     public Task() {}
 
@@ -51,12 +52,10 @@ public class Task {
     }
 
     public void setPriority(int priority) {
-        switch(priority) {
-            case 1: this.priority = PriorityEnum.ONE;
-            case 2: this.priority = PriorityEnum.TWO;
-            case 3: this.priority = PriorityEnum.THREE;
-            case 4: this.priority = PriorityEnum.FOUR;
-        };
+        if(priority == 1) this.priority = PriorityEnum.ONE;
+        if(priority == 2) this.priority = PriorityEnum.TWO;
+        if(priority == 3) this.priority = PriorityEnum.THREE;
+        if(priority == 4) this.priority = PriorityEnum.FOUR;
     }
 
     public String getResponsiblePerson() {
@@ -80,10 +79,11 @@ public class Task {
     }
 
     public void setStatus(int status) {
-        switch(status) {
-            case 0: this.status = StatusEnum.PROGRESS;
-            case 1: this.status = StatusEnum.COMPLETE;
-        };
+        if(status == 0) {
+            this.status = StatusEnum.PROGRESS;
+        } else {
+            this.status = StatusEnum.COMPLETE;
+        }
     }
 
     public OffsetDateTime getCreateDate() {
