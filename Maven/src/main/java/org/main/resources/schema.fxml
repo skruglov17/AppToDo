@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.TreeView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -26,120 +26,236 @@
             </HBox>
          </children>
       </VBox>
-      <SplitPane dividerPositions="0.29797979797979796" prefHeight="507.0" prefWidth="854.0">
+      <SplitPane dividerPositions="0.5" prefHeight="10000.0" prefWidth="10000.0">
         <items>
-          <AnchorPane fx:id="tasksPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="227.0">
-               <children>
-                  <ChoiceBox id="choiceBoxFilterTasks" layoutX="8.0" layoutY="8.0" prefHeight="25.0" prefWidth="70.0" />
-                  <TextField layoutX="88.0" layoutY="8.0" prefHeight="25.0" prefWidth="156.0" />
-                  <TreeView id="tasksTree" fx:id="tasksTree" layoutX="8.0" layoutY="42.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="406.0" prefWidth="235.0" />
-               </children>
-            </AnchorPane>
-          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="494.0" prefWidth="581.0">
-                     <children>
-                        <HBox prefHeight="40.0" prefWidth="582.0">
-                           <children>
-                              <Label prefHeight="26.0" prefWidth="90.0" text="Тема" />
-                              <TextField id="topicNameAdder" fx:id="topic" prefHeight="26.0" prefWidth="490.0" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="40.0" prefWidth="582.0">
-                           <children>
-                              <Label prefHeight="24.0" prefWidth="90.0" text="Подзадача" />
-                              <TextField id="topicNameAdder" fx:id="topicSubtask" prefHeight="26.0" prefWidth="400.0" />
-                              <Button id="topicNameAddButton" fx:id="buttonAddSubtask" mnemonicParsing="false" onAction="#addSubtask" prefHeight="23.0" prefWidth="90.0" text="Добавить" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="93.0" prefWidth="605.0">
-                           <children>
-                              <VBox prefHeight="90.0" prefWidth="90.0">
-                                 <children>
-                                    <Label prefHeight="25.0" prefWidth="100.0" text="Приоритет" />
-                                    <HBox prefHeight="5.0" prefWidth="100.0" />
-                                    <Label prefHeight="25.0" prefWidth="100.0" text="Ответственный" />
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <HBox prefHeight="5.0" prefWidth="100.0">
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <TreeView id="tasksTree" fx:id="tasksTree" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="406.0" prefWidth="235.0" BorderPane.alignment="CENTER" />
+               </center>
+               <top>
+                  <BorderPane prefHeight="32.0" prefWidth="251.0" BorderPane.alignment="CENTER">
+                     <left>
+                        <ChoiceBox id="choiceBoxFilterTasks" prefHeight="25.0" prefWidth="70.0" BorderPane.alignment="CENTER" />
+                     </left>
+                     <center>
+                        <TextField prefHeight="25.0" prefWidth="156.0" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </top>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <BorderPane prefHeight="500.0" prefWidth="582.0" BorderPane.alignment="CENTER">
+                     <top>
+                        <BorderPane prefHeight="35.0" prefWidth="582.0" BorderPane.alignment="CENTER">
+                           <left>
+                              <Label prefHeight="24.0" prefWidth="114.0" text="Тема" BorderPane.alignment="CENTER" />
+                           </left>
+                           <center>
+                              <TextField id="topicNameAdder" fx:id="topic" prefHeight="26.0" prefWidth="488.0" BorderPane.alignment="CENTER" />
+                           </center>
+                           <right>
+                              <HBox prefHeight="30.0" prefWidth="10.0" BorderPane.alignment="CENTER" />
+                           </right>
+                        </BorderPane>
+                     </top>
+                     <center>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <top>
+                              <BorderPane prefHeight="45.0" prefWidth="582.0" BorderPane.alignment="CENTER">
+                                 <left>
+                                    <Label prefHeight="24.0" prefWidth="114.0" text="Подзадача" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <center>
+                                    <TextField id="topicNameAdder" fx:id="topicSubtask" prefHeight="26.0" prefWidth="382.0" BorderPane.alignment="CENTER" />
+                                 </center>
+                                 <right>
+                                    <HBox prefHeight="10.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                                        <children>
-                                            <ToggleButton id="priorityOne" fx:id="priorityOne" prefHeight="25.0" prefWidth="25.0" />
-                                            <ToggleButton id="priorityTwo" fx:id="priorityTwo" prefHeight="25.0" prefWidth="25.0" />
-                                            <ToggleButton id="priorityThree" fx:id="priorityThree" prefHeight="25.0" prefWidth="25.0" />
-                                          <ToggleButton id="priorityFour" fx:id="priorityFour" prefHeight="25.0" prefWidth="25.0" />
+                                          <VBox prefHeight="46.0" prefWidth="5.0" />
+                                          <VBox prefHeight="46.0" prefWidth="88.0">
+                                             <children>
+                                                <HBox prefHeight="30.0" prefWidth="10.0" />
+                                                <Button id="topicNameAddButton" fx:id="buttonAddSubtask" mnemonicParsing="false" onAction="#addSubtask" prefHeight="29.0" prefWidth="87.0" text="Добавить" />
+                                                <HBox prefHeight="30.0" prefWidth="14.0" />
+                                             </children>
+                                          </VBox>
+                                          <VBox prefHeight="46.0" prefWidth="10.0" />
                                        </children>
                                     </HBox>
-                                    <HBox prefHeight="5.0" prefWidth="100.0" />
-                                    <TextField fx:id="responsible" prefHeight="25.0" prefWidth="100.0" />
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="90.0" prefWidth="70.0" />
-                              <VBox prefHeight="94.0" prefWidth="104.0">
-                                 <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0">
-                                       <children>
-                                          <Label alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="150.0" text="Зарегистрирована" textAlignment="CENTER" />
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0">
-                                       <children>
-                                          <Label alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="150.0" text="Срок" />
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0">
-                                       <children>
-                                          <HBox prefHeight="30.0" prefWidth="27.0" />
-                                          <Label prefHeight="26.0" prefWidth="73.0" text="Выполнена" />
-                                          <CheckBox fx:id="checkComplete" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="27.0" prefWidth="20.0" textAlignment="RIGHT" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="90.0" prefWidth="10.0" />
-                              <VBox prefHeight="86.0" prefWidth="206.0">
-                                 <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0">
-                                       <children>
-                                          <TextField fx:id="dateRegistration" prefHeight="25.0" prefWidth="156.0" />
-                                          <HBox prefHeight="29.0" prefWidth="60.0" />
-                                          <TextField fx:id="timeRegistration" prefHeight="25.0" prefWidth="156.0" />
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0">
-                                       <children>
-                                          <TextField fx:id="dateWish" prefHeight="25.0" prefWidth="156.0" />
-                                          <HBox prefHeight="29.0" prefWidth="60.0" />
-                                          <TextField fx:id="timeWish" prefHeight="25.0" prefWidth="156.0" />
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0">
-                                       <children>
-                                          <TextField fx:id="dateComplete" prefHeight="25.0" prefWidth="156.0" />
-                                          <HBox prefHeight="29.0" prefWidth="60.0" />
-                                          <TextField fx:id="timeComplete" prefHeight="25.0" prefWidth="156.0" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <TextArea id="descriptionTask" fx:id="description" prefHeight="275.0" prefWidth="582.0" wrapText="true" />
-                        <HBox prefHeight="10.0" prefWidth="582.0" />
-                        <HBox prefHeight="42.0" prefWidth="582.0">
-                           <children>
-                              <HBox prefHeight="37.0" prefWidth="377.0" />
-                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="99.0" text="Удалить" />
-                              <HBox prefHeight="38.0" prefWidth="5.0" />
-                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="99.0" text="Сохранить" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="10.0" prefWidth="582.0" />
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
+                                 </right>
+                              </BorderPane>
+                           </top>
+                           <center>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <top>
+                                    <BorderPane prefHeight="35.0" prefWidth="582.0" BorderPane.alignment="CENTER">
+                                       <left>
+                                          <Label prefHeight="26.0" prefWidth="114.0" text="Приоритет" BorderPane.alignment="CENTER" />
+                                       </left>
+                                       <center>
+                                          <HBox prefHeight="30.0" prefWidth="492.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <ToggleButton id="priorityOne" fx:id="priorityOne" prefHeight="25.0" prefWidth="25.0" />
+                                                <HBox prefHeight="35.0" prefWidth="5.0" />
+                                                <ToggleButton id="priorityTwo" fx:id="priorityTwo" prefHeight="25.0" prefWidth="25.0" />
+                                                <HBox prefHeight="35.0" prefWidth="5.0" />
+                                                <ToggleButton id="priorityThree" fx:id="priorityThree" prefHeight="25.0" prefWidth="25.0" />
+                                                <HBox prefHeight="35.0" prefWidth="5.0" />
+                                                <ToggleButton id="priorityFour" fx:id="priorityFour" prefHeight="25.0" prefWidth="25.0" />
+                                             </children>
+                                          </HBox>
+                                       </center>
+                                    </BorderPane>
+                                 </top>
+                                 <center>
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <top>
+                                          <BorderPane prefHeight="35.0" prefWidth="582.0" BorderPane.alignment="CENTER">
+                                             <left>
+                                                <Label prefHeight="26.0" prefWidth="114.0" text="Ответственный" BorderPane.alignment="CENTER" />
+                                             </left>
+                                             <center>
+                                                <TextField fx:id="responsible" prefHeight="26.0" prefWidth="489.0" BorderPane.alignment="CENTER" />
+                                             </center>
+                                             <right>
+                                                <HBox prefHeight="30.0" prefWidth="10.0" BorderPane.alignment="CENTER" />
+                                             </right>
+                                          </BorderPane>
+                                       </top>
+                                       <center>
+                                          <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                             <top>
+                                                <HBox prefHeight="93.0" prefWidth="605.0" BorderPane.alignment="CENTER">
+                                                   <children>
+                                                      <VBox prefHeight="94.0" prefWidth="104.0">
+                                                         <children>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <Label alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="150.0" text="Зарегистрирована" textAlignment="CENTER" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <Label alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="150.0" text="Срок" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <HBox prefHeight="30.0" prefWidth="27.0" />
+                                                                  <Label prefHeight="26.0" prefWidth="73.0" text="Выполнена" />
+                                                                  <CheckBox fx:id="checkComplete" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="27.0" prefWidth="20.0" textAlignment="RIGHT" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox prefHeight="90.0" prefWidth="10.0" />
+                                                      <VBox prefHeight="94.0" prefWidth="396.0">
+                                                         <children>
+                                                            <HBox prefHeight="98.0" prefWidth="255.0">
+                                                               <children>
+                                                                  <TextField fx:id="dayRegistration" prefWidth="30.0" />
+                                                                  <HBox prefHeight="35.0" prefWidth="5.0" />
+                                                                  <TextField fx:id="monthRegistration" prefWidth="30.0" />
+                                                                  <HBox prefHeight="35.0" prefWidth="5.0" />
+                                                                  <TextField fx:id="yearRegistration" prefWidth="40.0" />
+                                                                  <HBox prefHeight="30.0" prefWidth="5.0" />
+                                                                  <Label prefHeight="24.0" prefWidth="70.0" text="ДД:ММ:ГГГГ" />
+                                                                  <HBox prefHeight="30.0" prefWidth="20.0" />
+                                                                  <TextField fx:id="hourRegistration" prefWidth="30.0" />
+                                                                  <HBox prefHeight="35.0" prefWidth="5.0" />
+                                                                  <TextField fx:id="minuteRegistration" prefWidth="30.0" />
+                                                                  <HBox prefHeight="35.0" prefWidth="5.0" />
+                                                                  <TextField fx:id="secondRegistration" prefWidth="30.0" />
+                                                                  <HBox prefHeight="30.0" prefWidth="5.0" />
+                                                                  <Label prefHeight="24.0" prefWidth="60.0" text="ЧЧ:ММ:СС" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox prefHeight="98.0" prefWidth="255.0">
+                                                               <children>
+                                                                  <TextField fx:id="dayWish" prefWidth="30.0" />
+                                                                  <HBox prefHeight="35.0" prefWidth="5.0" />
+                                                                  <TextField fx:id="monthWish" prefWidth="30.0" />
+                                                                  <HBox prefHeight="35.0" prefWidth="5.0" />
+                                                                  <TextField fx:id="yearWish" prefWidth="40.0" />
+                                                                  <HBox prefHeight="31.0" prefWidth="5.0" />
+                                                                  <Label prefHeight="24.0" prefWidth="70.0" text="ДД:ММ:ГГГГ" />
+                                                                  <HBox prefHeight="31.0" prefWidth="20.0" />
+                                                                  <TextField fx:id="hourWish" prefWidth="30.0" />
+                                                                  <HBox prefHeight="35.0" prefWidth="5.0" />
+                                                                  <TextField fx:id="minuteWish" prefWidth="30.0" />
+                                                                  <HBox prefHeight="35.0" prefWidth="5.0" />
+                                                                  <TextField fx:id="secondWish" prefWidth="30.0" />
+                                                                  <HBox prefHeight="31.0" prefWidth="5.0" />
+                                                                  <Label prefHeight="24.0" prefWidth="60.0" text="ЧЧ:ММ:СС" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox prefHeight="100.0" prefWidth="255.0">
+                                                               <children>
+                                                                  <TextField fx:id="dayComplete" prefWidth="30.0" />
+                                                                  <HBox prefHeight="35.0" prefWidth="5.0" />
+                                                                  <TextField fx:id="monthComplete" prefWidth="30.0" />
+                                                                  <HBox prefHeight="35.0" prefWidth="5.0" />
+                                                                  <TextField fx:id="yearComplete" prefWidth="40.0" />
+                                                                  <HBox prefHeight="31.0" prefWidth="5.0" />
+                                                                  <Label prefHeight="24.0" prefWidth="70.0" text="ДД:ММ:ГГГГ" />
+                                                                  <HBox prefHeight="33.0" prefWidth="20.0" />
+                                                                  <TextField fx:id="hourComplete" prefWidth="30.0" />
+                                                                  <HBox prefHeight="35.0" prefWidth="5.0" />
+                                                                  <TextField fx:id="minuteComplete" prefWidth="30.0" />
+                                                                  <HBox prefHeight="35.0" prefWidth="5.0" />
+                                                                  <TextField fx:id="secondComplete" prefWidth="30.0" />
+                                                                  <HBox prefHeight="31.0" prefWidth="5.0" />
+                                                                  <Label prefHeight="24.0" prefWidth="60.0" text="ЧЧ:ММ:СС" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </top>
+                                             <center>
+                                                <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                                   <top>
+                                                      <TextArea id="descriptionTask" fx:id="description" prefHeight="275.0" prefWidth="582.0" wrapText="true" BorderPane.alignment="CENTER" />
+                                                   </top>
+                                                   <center>
+                                                      <BorderPane prefHeight="35.0" prefWidth="606.0" BorderPane.alignment="CENTER">
+                                                         <right>
+                                                            <HBox prefHeight="42.0" prefWidth="582.0" BorderPane.alignment="CENTER">
+                                                               <children>
+                                                                  <HBox prefHeight="37.0" prefWidth="377.0" />
+                                                                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="99.0" text="Удалить" />
+                                                                  <HBox prefHeight="38.0" prefWidth="5.0" />
+                                                                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="99.0" text="Сохранить" />
+                                                                  <HBox prefHeight="38.0" prefWidth="10.0" />
+                                                               </children>
+                                                            </HBox>
+                                                         </right>
+                                                         <bottom>
+                                                            <HBox prefHeight="10.0" prefWidth="582.0" BorderPane.alignment="CENTER" />
+                                                         </bottom>
+                                                         <top>
+                                                            <HBox prefHeight="10.0" prefWidth="582.0" BorderPane.alignment="CENTER" />
+                                                         </top>
+                                                      </BorderPane>
+                                                   </center>
+                                                </BorderPane>
+                                             </center>
+                                          </BorderPane>
+                                       </center>
+                                    </BorderPane>
+                                 </center>
+                              </BorderPane>
+                           </center>
+                        </BorderPane>
+                     </center>
+                  </BorderPane>
+               </center>
+               <left>
+                  <HBox prefHeight="566.0" prefWidth="5.0" BorderPane.alignment="CENTER" />
+               </left>
+            </BorderPane>
         </items>
       </SplitPane>
   </children>
