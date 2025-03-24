@@ -220,6 +220,7 @@ public class Controller implements Initializable {
      */
     @FXML
     private void addSubtask() {
+        if(topicSubtask.getText() == null || topicSubtask.getText().equals("")) return;
         int priorityParentTask = 4;
         if(selectedTask.getPriority() != null) {
             switch (selectedTask.getPriority()) {
@@ -286,6 +287,36 @@ public class Controller implements Initializable {
         parentTaskTreeItem.getChildren().remove(selectedTask.getTreeItem());
         tasksTree.getSelectionModel().select(parentTaskTreeItem);
     }
+
+    @FXML
+    private void changePriorityOne() {
+        priorityOne.setSelected(true);
+        priorityTwo.setSelected(false);
+        priorityThree.setSelected(false);
+        priorityFour.setSelected(false);
+    }
+    @FXML
+    private void changePriorityTwo() {
+        priorityOne.setSelected(false);
+        priorityTwo.setSelected(true);
+        priorityThree.setSelected(false);
+        priorityFour.setSelected(false);
+    }
+    @FXML
+    private void changePriorityThree() {
+        priorityOne.setSelected(false);
+        priorityTwo.setSelected(false);
+        priorityThree.setSelected(true);
+        priorityFour.setSelected(false);
+    }
+    @FXML
+    private void changePriorityFour() {
+        priorityOne.setSelected(false);
+        priorityTwo.setSelected(false);
+        priorityThree.setSelected(false);
+        priorityFour.setSelected(true);
+    }
+
 
 
 

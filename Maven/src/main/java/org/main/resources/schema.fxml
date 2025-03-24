@@ -96,13 +96,13 @@
                                        <center>
                                           <HBox prefHeight="30.0" prefWidth="492.0" BorderPane.alignment="CENTER">
                                              <children>
-                                                <ToggleButton id="priorityOne" fx:id="priorityOne" prefHeight="25.0" prefWidth="25.0" />
+                                                <ToggleButton id="priorityOne" fx:id="priorityOne" onAction="#changePriorityOne" prefHeight="25.0" prefWidth="25.0" />
                                                 <HBox prefHeight="35.0" prefWidth="5.0" />
-                                                <ToggleButton id="priorityTwo" fx:id="priorityTwo" prefHeight="25.0" prefWidth="25.0" />
+                                                <ToggleButton id="priorityTwo" fx:id="priorityTwo" onAction="#changePriorityTwo" prefHeight="25.0" prefWidth="25.0" />
                                                 <HBox prefHeight="35.0" prefWidth="5.0" />
-                                                <ToggleButton id="priorityThree" fx:id="priorityThree" prefHeight="25.0" prefWidth="25.0" />
+                                                <ToggleButton id="priorityThree" fx:id="priorityThree" onAction="#changePriorityThree" prefHeight="25.0" prefWidth="25.0" />
                                                 <HBox prefHeight="35.0" prefWidth="5.0" />
-                                                <ToggleButton id="priorityFour" fx:id="priorityFour" prefHeight="25.0" prefWidth="25.0" />
+                                                <ToggleButton id="priorityFour" fx:id="priorityFour" onAction="#changePriorityFour" prefHeight="25.0" prefWidth="25.0" />
                                              </children>
                                           </HBox>
                                        </center>
