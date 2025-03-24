@@ -225,7 +225,7 @@
                                                             <HBox prefHeight="42.0" prefWidth="582.0" BorderPane.alignment="CENTER">
                                                                <children>
                                                                   <HBox prefHeight="37.0" prefWidth="377.0" />
-                                                                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="99.0" text="Удалить" />
+                                                                  <Button fx:id="buttonDeleteTask" mnemonicParsing="false" onAction="#deleteTask" prefHeight="35.0" prefWidth="99.0" text="Удалить" />
                                                                   <HBox prefHeight="38.0" prefWidth="5.0" />
                                                                   <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="99.0" text="Сохранить" />
                                                                   <HBox prefHeight="38.0" prefWidth="10.0" />

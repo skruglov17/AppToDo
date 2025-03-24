@@ -11,10 +11,7 @@ import org.main.backend.Task;
 import org.main.backend.connection.DBConnector;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.OffsetDateTime;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -39,8 +36,6 @@ public class Controller implements Initializable {
     private CheckBox checkComplete;
     @FXML
     private TextArea description;
-    @FXML
-    private Button buttonAddSubtask;
     private static Task selectedTask;
 
     /**
@@ -271,6 +266,25 @@ public class Controller implements Initializable {
             throw new RuntimeException(e);
         }
         topicSubtask.setText("");
+    }
+
+    @FXML
+    private void deleteTask() {
+        if(selectedTask.getId() == 0) return;
+        TreeItem<Task> parentTaskTreeItem = selectedTask.getTreeItem().getParent();
+        Connection connection = DBConnector.getConnection();
+        String query = "DELETE FROM tasks \n" +
+                "\tWHERE id = ?;";
+        try (
+                PreparedStatement statement = connection.prepareStatement(query)
+        ) {
+            statement.setInt(1, selectedTask.getId());
+            statement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        parentTaskTreeItem.getChildren().remove(selectedTask.getTreeItem());
+        tasksTree.getSelectionModel().select(parentTaskTreeItem);
     }
 
 
