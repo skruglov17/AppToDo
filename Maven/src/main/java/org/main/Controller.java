@@ -225,13 +225,29 @@ public class Controller implements Initializable {
      */
     @FXML
     private void addSubtask() {
-        int idParentTask = selectedTask.getId();
+        int priorityParentTask = 4;
+        if(selectedTask.getPriority() != null) {
+            switch (selectedTask.getPriority()) {
+                case ONE:
+                    priorityParentTask = 1;
+                    break;
+                case TWO:
+                    priorityParentTask = 2;
+                    break;
+                case THREE:
+                    priorityParentTask = 3;
+                    break;
+                case FOUR:
+                    priorityParentTask = 4;
+                    break;
+            }
+        }
         TreeItem<Task> parentTaskTreeItem = selectedTask.getTreeItem();
         Task subtask;
         Connection connection = DBConnector.getConnection();
         try (
                 Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("INSERT INTO tasks (topic, create_date, parental_task) VALUES ('" + topicSubtask.getText() + "', '" + OffsetDateTime.now() + "', '" + idParentTask +"') RETURNING id;");
+                ResultSet resultSet = statement.executeQuery("INSERT INTO tasks (topic, priority, create_date, parental_task) VALUES ('" + topicSubtask.getText() + "', " + priorityParentTask + ", '" + OffsetDateTime.now() + "', '" + selectedTask.getId() +"') RETURNING id;");
                 ) {
             while (resultSet.next()) {
                 int idAddedTask = resultSet.getInt("id");
@@ -246,8 +262,8 @@ public class Controller implements Initializable {
                             parentTaskTreeItem.getChildren().add(subtask.getTreeItem());
                         } else {
                             mainTreeNode.getChildren().add(subtask.getTreeItem());
-                            tasksTree.getSelectionModel().select(subtask.getTreeItem());
                         }
+                        tasksTree.getSelectionModel().select(subtask.getTreeItem());
                     }
                 }
             }
