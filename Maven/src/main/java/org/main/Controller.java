@@ -2,11 +2,9 @@ package org.main;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import org.main.backend.PriorityEnum;
 import org.main.backend.StatusEnum;
 import org.main.backend.Task;
@@ -21,7 +19,7 @@ import java.time.OffsetDateTime;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-import static org.main.backend.Task.mapRowTask;
+import static org.main.backend.Task.*;
 
 public class Controller implements Initializable {
 
@@ -43,6 +41,7 @@ public class Controller implements Initializable {
     private TextArea description;
     @FXML
     private Button buttonAddSubtask;
+    private static Task selectedTask;
 
     /**
      * Метод предназначен для заполнения данными при запуске приложения
@@ -55,30 +54,6 @@ public class Controller implements Initializable {
         addListener();
     }
 
-    @FXML
-    private void addSubtask() {
-//        int idParentTask;
-//        SelectionModel<TreeItem<Task>> selectionModel = tasksTree.getSelectionModel();
-//        selectionModel.selectedItemProperty().addListener(new ChangeListener<TreeItem<Task>>() {
-//            public void changed(ObservableValue<? extends TreeItem<Task>> changed,
-//                TreeItem<Task> unSelectedValue, TreeItem<Task> selectedValue) {
-//                    Connection connection = DBConnector.getConnection();
-//                    LinkedList<Task> tasks = new LinkedList<>();
-//                    Task subTask = new Task();
-//                    try (
-//                            Statement statement = connection.createStatement();
-//                            ResultSet resultSet = statement.executeQuery("INSERT INTO tasks (topic, create_date, parental_task) VALUES ('" + topicSubtask.getText() + "', '" + OffsetDateTime.now() + "', '" + +"') RETURNING id");
-//                    ) {
-//                        while (resultSet.next()) {
-//                            subTask.setId();
-//                        }
-//                    } catch (SQLException e) {
-//                        throw new RuntimeException(e);
-//                    }
-//            }
-//        }
-    }
-
     /**
      * Метод предназначен для получения выбранной задачи из списка
      */
@@ -88,11 +63,54 @@ public class Controller implements Initializable {
         selectionModel.selectedItemProperty().addListener(new ChangeListener<TreeItem<Task>>(){
             public void changed(ObservableValue<? extends TreeItem<Task>> changed,
                                 TreeItem<Task> unSelectedValue, TreeItem<Task> selectedValue){
-                                    updateTreeTasks(selectedValue);
+                if(selectedValue != null) {
+                    updateTreeTasks(selectedValue);
+                    Controller.selectedTask = selectedValue.getValue();
+                }
             }
         });
     }
 
+    /**
+     * Метод предназначен для получения всего списка задач, сохранения их из БД в объекты и формирования списка дерева
+     */
+    @FXML
+    private void fillTasksTree() {
+        Connection connection = DBConnector.getConnection();
+        listTasks = new LinkedList<>();
+        Task.mainTreeNode = new TreeItem<Task>(new Task("Задачи"));
+        try (
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM tasks");
+        ) {
+            while(resultSet.next()) {
+                listTasks.add(mapRowTask(resultSet));
+            }
+            for (Task task : listTasks) {
+                if(task.getTreeItem() == null) task.setTreeItem(new TreeItem<Task>(task));
+            }
+            for (Task task : listTasks) {
+                if(task.getParentTask() == 0) {
+                    Task.mainTreeNode.getChildren().add(task.getTreeItem());
+                } else {
+                    for (Task temp : listTasks) {
+                        if(temp.getId() == task.getParentTask()){
+                            temp.getTreeItem().getChildren().add(task.getTreeItem());
+                        }
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        tasksTree.setRoot(Task.mainTreeNode);
+        selectedTask = mainTreeNode.getValue();
+    }
+
+    /**
+     * Метод для заполнения карточки задачи
+     * @param selectedTask - выбранная задача из списка
+     */
     private void updateTreeTasks(TreeItem<Task> selectedTask) {
         //Заполнение темы задачи
         topic.setText(selectedTask.getValue().getTopic());
@@ -203,30 +221,32 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Метод предназначен для получения всего списка задач, сохранения их из БД в объекты и формирования списка дерева
+     * Метод добавления подзадачи
      */
     @FXML
-    private void fillTasksTree() {
+    private void addSubtask() {
+        int idParentTask = selectedTask.getId();
+        TreeItem<Task> parentTaskTreeItem = selectedTask.getTreeItem();
+        Task subtask;
         Connection connection = DBConnector.getConnection();
-        LinkedList<Task> tasks = new LinkedList<>();
-        if(Task.mainTreeNode == null) Task.mainTreeNode = new TreeItem<Task>(new Task("Задачи"));
         try (
                 Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM tasks");
-        ) {
-            while(resultSet.next()) {
-                tasks.add(mapRowTask(resultSet));
-            }
-            for (Task task : tasks) {
-                if(task.getTreeItem() == null) task.setTreeItem(new TreeItem<Task>(task));
-            }
-            for (Task task : tasks) {
-                if(task.getParentTask() == 0) {
-                    Task.mainTreeNode.getChildren().add(task.getTreeItem());
-                } else {
-                    for (Task temp : tasks) {
-                        if(temp.getId() == task.getParentTask()){
-                            temp.getTreeItem().getChildren().add(task.getTreeItem());
+                ResultSet resultSet = statement.executeQuery("INSERT INTO tasks (topic, create_date, parental_task) VALUES ('" + topicSubtask.getText() + "', '" + OffsetDateTime.now() + "', '" + idParentTask +"') RETURNING id;");
+                ) {
+            while (resultSet.next()) {
+                int idAddedTask = resultSet.getInt("id");
+                try (
+                        Statement statement2 = connection.createStatement();
+                        ResultSet resultSet2 = statement2.executeQuery("SELECT * FROM tasks WHERE ID = " + idAddedTask + ";");
+                ) {
+                    while (resultSet2.next()) {
+                        subtask = mapRowTask(resultSet2);
+                        if(subtask.getTreeItem() == null) subtask.setTreeItem(new TreeItem<Task>(subtask));
+                        if(parentTaskTreeItem != null) {
+                            parentTaskTreeItem.getChildren().add(subtask.getTreeItem());
+                        } else {
+                            mainTreeNode.getChildren().add(subtask.getTreeItem());
+                            tasksTree.getSelectionModel().select(subtask.getTreeItem());
                         }
                     }
                 }
@@ -234,7 +254,11 @@ public class Controller implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        tasksTree.setRoot(Task.mainTreeNode);
+        topicSubtask.setText("");
     }
+
+
+
+
 
 }

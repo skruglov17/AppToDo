@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.OffsetTime;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Task {
@@ -24,6 +25,7 @@ public class Task {
     private int parentTask;
     private TreeItem<Task> treeItem;
     public static TreeItem<Task> mainTreeNode;
+    public static LinkedList<Task> listTasks;
 
     public Task() {}
 
